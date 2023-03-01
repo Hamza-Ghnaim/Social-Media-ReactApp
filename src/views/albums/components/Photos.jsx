@@ -1,9 +1,39 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 
 const Photos = ()=>{
-    console.log("photos")
+
+    const [photos, setphotos] = useState([]);
+    const [searchParams] = useSearchParams();
+    const albumID = searchParams.get("albumID");
+
+    useEffect(() => {
+        const Fetch = async () => {
+
+        const Response2 = await axios.get(
+        `albums/${albumID}/photos`
+        );
+        setphotos(Response2.data);
+    };
+    Fetch();
+    // localStorage.removeItem('userinfo');
+});
+
     return (
-        <h1>welcome to photos</h1>
+        <>
+            {photos &&
+                photos.map((photo) => (
+                <div key={photo.id} >
+                    <div >
+                    <img  src={photo.url} alt="img" />
+                    <div >
+                    </div>
+                    </div>
+                    <hr/>
+                </div>
+        ))}
+        </>
     )
 }
 
