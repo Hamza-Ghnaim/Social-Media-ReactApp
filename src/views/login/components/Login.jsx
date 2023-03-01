@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthService } from '../services';
@@ -10,6 +10,10 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  
+  useEffect(()=>{
+    localStorage.clear()
+  })
 
   const handleSubmit = async event => {
     event.preventDefault();
