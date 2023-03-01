@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import classes from "./Albums.module.css";
+
 
 const Photos = ()=>{
 
@@ -24,13 +26,13 @@ const Photos = ()=>{
         <>
             {photos &&
                 photos.map((photo) => (
-                <div key={photo.id} >
-                    <div >
-                    <img  src={photo.url} alt="img" />
-                    <div >
+                <div key={photo.id} className={classes.addedCOMMENTDIV}>
+                    <div className={classes.commenterINFO} >
+                    <img className={classes.photo} src={photo.url} alt="img" />
+                    <div className={classes.commentorNAMES}>
                     </div>
                     </div>
-                    <hr/>
+                    <hr className={classes.hr2}/>
                 </div>
         ))}
         </>

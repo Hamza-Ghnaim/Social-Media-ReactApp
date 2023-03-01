@@ -2,6 +2,8 @@ import React, { Fragment,useState, useContext, useEffect } from 'react';
 import { AlbumService } from '../services/album.service';
 import Album from './Album';
 import { UserContext } from '../../../context';
+import classes from "./Albums.module.css";
+
 
 const Albums = () => {
     const { currentUser } = useContext(UserContext);
@@ -28,20 +30,23 @@ const Albums = () => {
     // console.log(userAlbums);
 
     return (
-        <div>
-            <h1
-                style={{
-                color: 'blue',
-            }}>
-                Albums
-            </h1>
-            {userAlbums &&
-                userAlbums.map((album,index) => (
-            <Fragment key={album.id}>
-                <Album data={album} />
-            </Fragment>
-        ))}
+        <>
+            <div className={classes.enclosing}>
+            <div className={classes.container}>
+            <h1 className={classes.title}>Discover</h1>
+            <p className={classes.paragraph}>
+                <strong>WHAT'S NEW TODAY</strong>
+            </p>
+            <br />
+            </div>
         </div>
+                {userAlbums &&
+                    userAlbums.map((album,index) => (
+                <Fragment key={album.id}>
+                    <Album data={album} />
+                </Fragment>
+            ))}
+        </>
     );
 };
 
